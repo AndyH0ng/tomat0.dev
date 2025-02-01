@@ -7,7 +7,7 @@
 
   export let showResults = true;
 
-  export let placeholder = "Search...";
+  export let placeholder = "검색...";
 
   export let results: { title: string; content: string; href: string }[] = [
     {
@@ -19,7 +19,7 @@
     { title: "Title", content: "Content", href: "/" },
   ];
 
-  export let noResults = "No results found";
+  export let noResults = "검색하신 결과를 찾을 수 없습니다.";
 
   let currentSelection = 0;
 

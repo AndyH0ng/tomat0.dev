@@ -80,6 +80,9 @@ content:
           - name: GITHUB_URL
             label: GitHub URL
             type: string
+          - name: BOJ_URL
+            label: BOJ URL
+            type: string
           - name: EMAIL
             label: Email
             type: string
