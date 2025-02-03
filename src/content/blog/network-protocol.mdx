@@ -3,7 +3,7 @@ title: "프로토콜의 이해와 DDoS 공격"
 description: "프로토콜의 정의와 TCP, UDP 프로토콜의 차이를 알아보고, 각 프로토콜의 특성을 활용한 DDoS 공격에 대해 알아봅니다."
 pubDate: "2025.2.1"
 published: true
-heroImage: "/src/assets/blog-placeholder-3.jpg"
+heroImage: "/src/assets/what-is-tcp-udp.png"
 tags: ["Network", "Security"]
 ---
 
@@ -63,9 +63,9 @@ HTTP와 Chrome은 서로 다른 것이며, HTTP는 Chrome이 데이터를 주고
 
 다음과 같은 과정을 거쳐 연결을 맺습니다.
 
-1. 클라이언트가 서버에서 `SYN` 패킷을 보낸다.
-2. 서버는 클라이언트에게 `SYN-ACK` 패킷을 보낸다.
-3. 클라이언트는 서버에게 `ACK` 패킷을 보내 연결을 맺는다.
+1. 클라이언트가 서버에서 `SYN` 패킷을 보냅니다.
+2. 서버는 클라이언트에게 `SYN-ACK` 패킷을 보냅니다.
+3. 클라이언트는 서버에게 `ACK` 패킷을 보내 연결을 맺습니다.
 
 이후 `ESTABLISHED` 상태가 되어 데이터를 주고받을 수 있게 됩니다.
 
@@ -87,6 +87,9 @@ HTTP와 Chrome은 서로 다른 것이며, HTTP는 Chrome이 데이터를 주고
 ![tcp-vs-udp](https://www.cloudflare.com/img/learning/ddos/glossary/user-datagram-protocol-udp/tcp-vs-udp.svg)
 
 ## DDoS 공격
+
+분산 서비스 거부 공격(DDoS)은 서버를 마비시키기 위한 공격입니다.<br/>
+여러 공격 방법이 있지만 이 글에서는 L4 프로토콜을 이용한 공격에 대해 알아보겠습니다.
 
 ### UDP Flood
 
