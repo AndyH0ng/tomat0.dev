@@ -22,6 +22,12 @@ const { title, description, image } = Astro.props;
       } else {
         root.classList.remove("dark");
       }
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TCRS19JJ62');
     </script>
 
     <style is:global>
