@@ -49,7 +49,13 @@ export default defineConfig({
     ]
   }), robotsTxt({
     transform(content) {
-      return `#DaumWebMasterTool:311b820ef1c898f8af9076710bd7b460a6e9992ea10d2e6a9ae9342ee957aa52:VaT0r9PaGto+8OktnYR0MQ==`
+      return `
+#DaumWebMasterTool:311b820ef1c898f8af9076710bd7b460a6e9992ea10d2e6a9ae9342ee957aa52:VaT0r9PaGto+8OktnYR0MQ==\`
+User-agent: *
+Allow: /
+
+Sitemap: https://tomat0.pages.dev/sitemap-index.xml
+      `
     }
   }), mdx(), sitemap(), tailwind(), svelte()],
 
