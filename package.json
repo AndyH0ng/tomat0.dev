@@ -24,6 +24,7 @@
     "astro": "^4.16.14",
     "astro-custom-embeds": "^0.0.1",
     "astro-og-canvas": "^0.5.4",
+    "astro-robots-txt": "^1.0.0",
     "lite-youtube-embed": "^0.3.3",
     "svelte": "^5.1.1",
     "tailwind-merge": "^2.5.4",

@@ -17,6 +17,8 @@ import { transformerMetaHighlight, transformerNotationHighlight } from '@shikijs
 import LinkCardEmbed from './src/embeds/link-card/embed'
 import YoutubeEmbed from './src/embeds/youtube/embed'
 
+import robotsTxt from "astro-robots-txt";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -39,13 +41,16 @@ export default defineConfig({
       },
     },
   },
-
   integrations: [customEmbeds({
     embeds: [
       YoutubeEmbed,
       LinkCardEmbed,
       
     ]
+  }), robotsTxt({
+    transform(content) {
+      return `#DaumWebMasterTool:311b820ef1c898f8af9076710bd7b460a6e9992ea10d2e6a9ae9342ee957aa52:VaT0r9PaGto+8OktnYR0MQ==`
+    }
   }), mdx(), sitemap(), tailwind(), svelte()],
 
   markdown: {
