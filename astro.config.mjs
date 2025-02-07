@@ -7,6 +7,8 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
 import pagefind from "vite-plugin-pagefind";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 import { BASE, SITE } from "./src/config.json";
 
@@ -71,8 +73,10 @@ Sitemap: https://tomat0.pages.dev/sitemap-index.xml
       },
       defaultColor: false,
       transformers: [transformerMetaHighlight(), transformerNotationHighlight()],
-      wrap: true
+      wrap: true,
     },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
 
   prefetch: {
