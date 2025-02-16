@@ -1,0 +1,283 @@
+---
+title: "[JS] 객체"
+description: "JavaScript에서 객체를 다뤄봅니다."
+pubDate: "2025.2.15"
+published: true
+heroImage: "/src/assets/blog-placeholder-3.jpg"
+tags: ["JavaScript"]
+---
+
+## 객체
+
+JavaScript에서는 원시 값을 제외한 모든 것이 객체입니다.
+
+| 원시 값   | 객체     |
+| --------- | -------- |
+| 변경 불가한 값 | 변경 가능한 값 |
+| 메서드를 가질 수 없음 | 메서드를 가질 수 있음 |
+| 값에 의한 전달 | 참조에 의한 전달 |
+
+객체는 프로퍼티로 구성되며, 프로퍼티는 Key와 Value로 구성됩니다.
+
+Key는 중복 선언될 수 있으며, 이 경우 마지막 선언된 값이 저장됩니다.
+
+## 프로토타입 기반 언어
+
+C++이나 Java와 같은 언어는 클래스 기반 언어이며, 클래스를 사용하여 객체를 생성합니다.<br/>
+반면 JavaScript는 프로토타입 기반 언어입니다.
+
+객체는 다른 객체를 참조할 수 있으며, 이를 프로토타입이라고 합니다.
+
+객체는 프로토타입 객체의 프로퍼티를 상속받을 수 있습니다.
+
+후술할 `Object.create` 메서드를 사용하여 프로토타입 객체를 지정할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+const student = Object.create(person);
+student.name = 'Jane Doe';
+student.grade = 'A';
+```
+
+이 예제의 경우 `student` 객체는 `person` 객체를 프로토타입으로 지정하였으므로<br/>
+`person` 객체의 프로퍼티를 상속받을 수 있습니다.
+
+## 프로퍼티 접근
+
+### 점 표기법
+
+점 표기법을 사용하여 프로퍼티에 접근할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+console.log(person.name); // John Doe
+```
+
+### 대괄호 표기법
+
+이외에도 대괄호 표기법을 사용하여 프로퍼티에 접근할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+console.log(person['name']); // John Doe
+```
+
+대괄호 표기법을 사용할 때는 Key를 문자열로 작성해야 합니다.
+
+## 프로퍼티 삭제
+
+`delete` 연산자를 사용하여 프로퍼티를 삭제할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+delete person.age;
+```
+
+## 프로퍼티 존재 확인
+
+`in` 연산자를 사용하여 프로퍼티의 존재 여부를 확인할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+console.log('name' in person); // true
+console.log('age' in person); // true
+console.log('email' in person); // false
+```
+
+## 프로퍼티 열거
+
+`for...in` 문을 사용하여 객체의 프로퍼티를 열거할 수 있습니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+
+for (const key in person) {
+  console.log(key + ': ' + person[key]);
+}
+```
+
+## 프로퍼티 동적 생성
+
+객체는 동적으로 프로퍼티를 생성하여 추가할 수 있습니다.
+
+```js
+const person = {};
+person.name = 'John Doe';
+person.age = 30;
+person.address = '123 Main Street';
+person.greet = function() {
+  console.log('Hello, my name is ' + this.name);
+};
+```
+
+## 객체 생성하기
+
+### 객체 리터럴
+
+중괄호 `{}`를 사용하여 객체를 생성하는 방법입니다.
+
+```js
+const person = {
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+};
+```
+
+객체 리터럴을 사용하여 객체를 생성할 때는 `new` 키워드를 사용하지 않으며<br/>
+`Key: Value` 형태로 프로퍼티를 작성합니다.
+
+
+### Object 생성자 함수
+
+`Object` 생성자 함수를 사용하여 객체를 생성할 수 있습니다.
+
+```js
+const person = new Object();
+person.name = 'John Doe';
+person.age = 30;
+person.address = '123 Main Street';
+person.greet = function() {
+  console.log('Hello, my name is ' + this.name);
+};
+```
+
+### 생성자 함수
+
+생성자 함수를 사용하여 객체를 생성할 수 있습니다.
+
+```js
+function Person(name, age, address) {
+  this.name = name;
+  this.age = age;
+  this.address = address;
+  this.greet = function() {
+    console.log('Hello, my name is ' + this.name);
+  };
+}
+
+const person = new Person('John Doe', 30, '123 Main Street');
+```
+
+생성자 함수는 객체를 생성함과 동시에 초기화를 수행할 수 있습니다.
+
+### Object.create 메서드
+
+`Object.create` 메서드를 사용하여 객체를 생성할 수 있습니다.
+
+```js
+const person = Object.create({
+  name: 'John Doe',
+  age: 30,
+  address: '123 Main Street',
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+});
+```
+
+`Object.create` 메서드는 첫 번째 인수로 프로토타입 객체를 전달받고<br/>
+두 번째 인수로 프로퍼티를 받을 수 있습니다.
+
+```js
+const person = Object.create({
+  greet: function() {
+    console.log('Hello, my name is ' + this.name);
+  }
+}, {
+  name: {
+    value: 'John Doe',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  },
+  age: {
+    value: 30,
+    writable: true,
+    enumerable: true,
+    configurable: true
+  },
+  address: {
+    value: '123 Main Street',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  }
+});
+```
+
+자세한 내용은 [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)을 참고하세요.
+
+### 클래스
+
+ES6에서 클래스를 사용하여 객체를 생성할 수 있습니다.
+
+```js
+class Person {
+  constructor(name, age, address) {
+    this.name = name;
+    this.age = age;
+    this.address = address;
+  }
+
+  greet() {
+    console.log('Hello, my name is ' + this.name);
+  }
+}
+
+const person = new Person('John Doe', 30, '123 Main Street');
+```
+
+JavaScript는 프로토타입 기반 언어이므로 클래스는 사실 함수입니다.
+
+`class` 키워드는 함수를 생성하고, `constructor` 메서드는 생성자 함수를 정의합니다.
