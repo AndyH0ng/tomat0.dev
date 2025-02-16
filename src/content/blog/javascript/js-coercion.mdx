@@ -1,0 +1,184 @@
+---
+title: "[JS] 명시적 / 암묵적 형 변환"
+description: "JavaScript에서 명시적 및 암묵적 형 변환을 예제와 함께 알아봅니다."
+pubDate: "2025.2.14"
+published: true
+heroImage: "/src/assets/blog-placeholder-3.jpg"
+tags: ["JavaScript"]
+---
+
+## 명시적 형 변환
+
+명시적 형 변환은 개발자가 데이터 타입을 직접 변환하는 것을 의미합니다.
+
+### Number로 변환
+
+`Number()` 함수를 사용하여 숫자로 변환할 수 있습니다.
+
+Boolean `true`는 `1`, `false`는 `0`으로 변환됩니다.
+
+```js
+console.log(Number('123'), typeof Number('123'));
+console.log(Number('3.14'), typeof Number('3.14'));
+console.log(Number(true), typeof Number(true));
+console.log(Number('abc'), typeof Number('abc'));
+// 123 number
+// 3.14 number
+// 1 number
+// NaN number
+```
+
+`parseInt()` 함수를 사용하여 문자열을 정수로,<br/>
+`parseFloat()` 함수를 사용하여 문자열을 부동 소수점으로 변환할 수 있습니다.
+
+```js
+console.log(parseInt('123'), typeof parseInt('123'));
+console.log(parseInt('3.14'), typeof parseInt('3.14'));
+console.log(parseInt(true), typeof parseInt(true));
+console.log(parseInt('abc'), typeof parseInt('abc'));
+// 123 number
+// 3 number
+// NaN number
+// NaN number
+```
+
+```js
+console.log(parseFloat('123'), typeof parseFloat('123'));
+console.log(parseFloat('3.14'), typeof parseFloat('3.14'));
+console.log(parseFloat(true), typeof parseFloat(true));
+console.log(parseFloat('abc'), typeof parseFloat('abc'));
+// 123 number
+// 3.14 number
+// NaN number
+// NaN number
+```
+
+### String으로 변환
+
+`String()` 함수를 사용하여 문자열로 변환할 수 있습니다.
+
+```js
+console.log(String(123), typeof String(123));
+console.log(String(3.14), typeof String(3.14));
+console.log(String(true), typeof String(true));
+// 123 string
+// 3.14 string
+// true string
+```
+
+`toString()` 함수를 사용하여 숫자를 문자열로 변환할 수 있습니다.
+
+이때 Number 타입의 값을 변환할 경우 진법 변환이 가능합니다.
+
+```js
+console.log((123).toString(), typeof (123).toString());
+console.log((3.14).toString(), typeof (3.14).toString());
+console.log((true).toString(), typeof (true).toString());
+console.log((10).toString(2), typeof (10).toString(2));
+// 123 string
+// 3.14 string
+// true string
+// 1010 string
+```
+
+### Boolean으로 변환
+
+`Boolean()` 함수를 사용하여 불리언으로 변환할 수 있습니다.
+
+`0`, `-0`, `NaN`, `null`, `undefined`, `''`등 falsy 값을 `false`로 변환됩니다.
+
+```js
+console.log(Boolean(123), typeof Boolean(123));
+console.log(Boolean(0), typeof Boolean(0));
+console.log(Boolean('abc'), typeof Boolean('abc'));
+console.log(Boolean(''), typeof Boolean(''));
+// true boolean
+// false boolean
+// true boolean
+// false boolean
+```
+
+## 암묵적 형 변환
+
+암묵적 형 변환은 JavaScript 엔진이 데이터 타입을 자동으로 변환하는 것을 의미합니다.
+
+### 문자열 연결 연산자
+
+`+` 연산자는 피연산자 중 하나가 문자열인 경우 문자열 연결 연산자로 동작합니다.
+
+```js
+console.log(1 + '2', typeof (1 + '2'));
+console.log(1 + 2 + '3', typeof (1 + 2 + '3'));
+console.log('1' + 2 + 3, typeof ('1' + 2 + 3));
+// 12 string
+// 33 string
+// 123 string
+```
+
+### 산술 연산자
+
+`-`, `*`, `/` 연산자는 피연산자 중 하나가 문자열인 경우 문자열을 number로 변환합니다.
+
+```js
+console.log(1 - '2', typeof (1 - '2'));
+console.log(1 * '2', typeof (1 * '2'));
+console.log(1 / '2', typeof (1 / '2'));
+// -1 number
+// 2 number
+// 0.5 number
+```
+
+### 비교 연산자
+
+`==` 연산자는 피연산자의 타입이 다를 경우 암묵적 형 변환을 수행합니다.
+
+```js
+console.log(1 == '1', typeof (1 == '1'));
+console.log(1 == '2', typeof (1 == '2'));
+// true boolean
+// false boolean
+```
+
+`===` 연산자는 피연산자의 타입이 다를 경우 암묵적 형 변환을 수행하지 않습니다.
+
+```js
+console.log(1 === '1', typeof (1 === '1'));
+console.log(1 === '2', typeof (1 === '2'));
+// false boolean
+// false boolean
+```
+
+### 논리 연산자
+
+`!` 연산자는 피연산자를 boolean으로 변환합니다.
+
+```js
+console.log(!0, typeof !0);
+console.log(!'abc', typeof !'abc');
+// true boolean
+// false boolean
+```
+
+`&&`, `||` 연산자 또한 피연산자를 boolean으로 변환합니다.
+
+```js
+console.log(0 && 'abc', typeof (0 && 'abc'));
+console.log('abc' || 'def', typeof ('abc' || 'def'));
+// 0 number
+// abc string
+```
+
+### 삼항 연산자
+
+삼항 연산자는 표현식을 boolean으로 변환합니다.
+
+```js
+console.log(0 ? 'true' : 'false', typeof (0 ? 'true' : 'false'));
+console.log('abc' ? 'true' : 'false', typeof ('abc' ? 'true' : 'false'));
+// false string
+// true string
+```
+
+## 참고
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript
